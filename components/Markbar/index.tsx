@@ -1,15 +1,16 @@
 import { MarkItem } from "../../utils/types";
-import MarkBarItem from "../MarkBarItem";
+import MarkBarItem from "./MarkBarItem";
+import './index.css';
 
 interface Props {
   marks: MarkItem[];
 }
 
-function MarkBar(props: Props) {
+export default function MarkBar(props: Props) {
   const { marks } = props;
 
   return (
-    <div>
+    <div className="MarkBar">
       {marks.map((mark) => (
         <MarkBarItem item={mark} key={mark.id} />
       ))}

@@ -1,0 +1,9 @@
+.MarkBar {
+  display: block;
+  overflow-x: auto;
+}
+
+.MarkBarItem {
+  max-width: 200px;
+  display: inline-block;
+}

@@ -7,9 +7,7 @@ interface Props {
   item: MarkItem;
 }
 
-export default function MarkItem(props: Props) {
-  const { item } = props;
-
+function getItemComponent(item: MarkItem) {
   switch (item.type) {
     case MarkType.Separator: return (
       <Seperator />
@@ -22,4 +20,14 @@ export default function MarkItem(props: Props) {
     )
     default: return null;
   }
+}
+
+export default function MarkBarItem(props: Props) {
+  const { item } = props;
+
+  return (
+    <div className='MarkBarItem'>
+      {getItemComponent(item)}
+    </div>
+  )
 }

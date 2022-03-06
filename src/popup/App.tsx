@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import "./App.css";
+import MarkBar from "../../components/Markbar";
+import mockMarkBarItems from "../../mock/bookmarks";
 
 export default function App() {
-  const [curTime, setCurTime] = useState(0);
-
-  useEffect(() => {
-    setCurTime(Date.now());
-  }, []);
-
-  return <div>hello {curTime}</div>;
+  return (
+    <div className="App">
+      <MarkBar marks={mockMarkBarItems} />
+    </div>
+  );
 }
