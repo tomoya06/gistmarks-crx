@@ -14,11 +14,17 @@ export default defineConfig({
       targets: [{ src: "./manifest.json", dest: "dist/" }],
     }),
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname),
+    }
+  },
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),
+        main: resolve(root, "main/index.html"),
         about: resolve(root, "about/index.html"),
+        popup: resolve(root, "popup/index.html"),
       },
     },
   },
