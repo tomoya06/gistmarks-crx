@@ -1,11 +1,12 @@
 import "./App.css";
-import MarkBar from "../../components/Markbar";
+import "antd/dist/antd.css";
+import MarkTree from "../../components/MarkTree";
 import mockMarkBarItems from "../../mock/bookmarks";
 
 export default function App() {
   return (
     <div className="App">
-      <MarkBar marks={mockMarkBarItems} />
+      <MarkTree marks={mockMarkBarItems} />
     </div>
   );
 }
