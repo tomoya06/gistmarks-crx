@@ -1,0 +1,8 @@
+iframe#GistMarkIFrame {
+  position: fixed;
+  clip: auto;
+  border-radius: 3px;
+  box-shadow: 0 0 10px 3px rgb(162 161 161 / 30%);
+  z-index: 2147483647;
+  display: block !important;
+}

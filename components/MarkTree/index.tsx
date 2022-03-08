@@ -14,10 +14,6 @@ export default function MarkTree(props: Props) {
     return transMarksToTreenodes(marks);
   }, [marks]);
 
-  const handleItemSelect = (item: unknown) => {
-    console.log("clicked", item);
-  };
-
   return (
     <Tree
       showIcon={true}

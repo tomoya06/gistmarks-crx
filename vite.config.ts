@@ -6,19 +6,15 @@ import copy from "rollup-plugin-copy";
 const root = resolve(__dirname, "src");
 const outDir = resolve(__dirname, "dist");
 
-const scripts = ["background"];
-
-const scriptInputs: Record<string, string> = {};
-scripts.forEach((name) => {
-  scriptInputs[`scripts_${name}`] = resolve(__dirname, `scripts/${name}.ts`);
-});
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     copy({
-      targets: [{ src: "./manifest.json", dest: "dist/" }],
+      targets: [
+        { src: "./manifest.json", dest: "dist/" },
+        { src: "./assets/css/*", dest: "dist/css" },
+      ],
     }),
   ],
   resolve: {
@@ -35,7 +31,7 @@ export default defineConfig({
         create: resolve(root, "create/index.html"),
 
         // scripts
-        ...scriptInputs,
+        scripts_background: resolve(__dirname, `scripts/background.ts`),
       },
       output: {
         entryFileNames: (chunkInfo) => {
