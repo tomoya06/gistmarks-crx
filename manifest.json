@@ -17,7 +17,7 @@
   "web_accessible_resources": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "resources": ["src/create/index.html"]
+      "resources": ["src/create/index.html", "assets/create.js"]
     }
   ],
   "content_scripts": [

@@ -20,11 +20,8 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         },
       },
       () => {
-        console.log('send msg from background.js');
-        chrome.tabs.sendMessage(
-          tab.id,
-          JSON.stringify(tab),
-        );
+        console.log("send msg from background.js");
+        chrome.tabs.sendMessage(tab.id, JSON.stringify(tab));
       }
     );
   }
