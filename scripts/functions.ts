@@ -1,3 +1,5 @@
+import { StorageKey } from "../utils/constants";
+
 export function openCreate() {
   const iframeOrigin = "chrome-extension://" + chrome.runtime.id;
   const createHtmlPath = "src/create/index.html";
@@ -11,17 +13,9 @@ export function openCreate() {
   div.style.height = "300px";
   document.body.insertBefore(div, document.body.firstChild);
 
-  let pageInfo = "";
-
-  chrome.runtime.onMessage.addListener((msg, sender) => {
+  chrome.runtime.onMessage.addListener((msg) => {
     console.log("received msg from ext", msg);
 
-    pageInfo = msg;
-  });
-
-  div.addEventListener("load", () => {
-    console.log("iframe loaded");
-
-    div.contentWindow.postMessage(pageInfo, iframeOrigin);
+    chrome.storage.local.set({ [StorageKey.CurrentTabInfo]: msg });
   });
 }

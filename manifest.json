@@ -3,7 +3,7 @@
   "description": "A browser action with a popup dump of all bookmarks, including search, add, edit and delete.",
   "version": "1.0",
   "manifest_version": 3,
-  "permissions": ["bookmarks", "tabs", "contextMenus", "scripting"],
+  "permissions": ["bookmarks", "tabs", "contextMenus", "scripting", "storage"],
   "host_permissions": ["http://*/*", "https://*/*"],
   "action": {
     "default_title": "My Bookmarks",
