@@ -23,9 +23,9 @@ function MarkItemSeperator(props: { item: MarkItem }) {
   return <span className="MarkTreeDevider"></span>;
 }
 
-export const transMarksToTreenodes = (marks: MarkItem[]): TreeDataNode[] => {
+export const transMarksToTreenodes = (marks: MarkItem[], filters: Set<MarkType>): TreeDataNode[] => {
   return marks
-    .filter((item) => item.type !== MarkType.Separator)
+    .filter((item) => filters.has(item.type))
     .map((item) => {
       if (item.type === MarkType.Link) {
         return {
@@ -38,7 +38,7 @@ export const transMarksToTreenodes = (marks: MarkItem[]): TreeDataNode[] => {
         return {
           key: item.id,
           title: item.name,
-          children: transMarksToTreenodes(item.children),
+          children: transMarksToTreenodes(item.children, filters),
         };
       }
       return {

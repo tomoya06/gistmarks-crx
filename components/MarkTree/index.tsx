@@ -1,18 +1,24 @@
 import { Tree } from "antd";
 import { useMemo } from "react";
-import { MarkItem } from "../../utils/types";
+import { MarkItem, MarkType } from "../../utils/types";
 import { transMarksToTreenodes } from "./middleware";
 
 interface Props {
   marks: MarkItem[];
+  onlyFolder?: boolean;
 }
 
 export default function MarkTree(props: Props) {
-  const { marks } = props;
+  const { marks, onlyFolder = false } = props;
 
   const treeData = useMemo(() => {
-    return transMarksToTreenodes(marks);
-  }, [marks]);
+    const filters = new Set([MarkType.Folder]);
+    if (!onlyFolder) {
+      filters.add(MarkType.Link);
+    }
+
+    return transMarksToTreenodes(marks, filters);
+  }, [marks, onlyFolder]);
 
   return (
     <Tree

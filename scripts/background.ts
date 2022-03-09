@@ -12,11 +12,20 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === ContextMenuId.RightClickTest) {
     console.log("您点击了右键菜单！");
-    chrome.scripting.executeScript({
-      func: openCreate,
-      target: {
-        tabId: tab.id,
+    chrome.scripting.executeScript(
+      {
+        func: openCreate,
+        target: {
+          tabId: tab.id,
+        },
       },
-    });
+      () => {
+        console.log('send msg from background.js');
+        chrome.tabs.sendMessage(
+          tab.id,
+          "helloworld",
+        );
+      }
+    );
   }
 });
