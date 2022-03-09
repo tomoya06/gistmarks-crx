@@ -10,9 +10,11 @@ ReactDOM.render(
 );
 
 const msgHandler: WindowEventHandlers["onmessage"] = (event) => {
-  console.log("received message: ");
-
-  console.log(event);
+  console.log("received message: ", event);
+  if ((window as any).updateTabInfo) {
+    console.log("update msg to app");
+    (window as any).updateTabInfo(JSON.parse(event.data));
+  }
 };
 window.addEventListener("message", msgHandler);
 console.log("app started");
