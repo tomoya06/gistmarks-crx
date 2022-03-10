@@ -8,7 +8,7 @@ export function openCreate() {
   div.id = _IframeCreateId;
   div.style.right = "10px";
   div.style.top = "10px";
-  div.style.width = "600px";
+  div.style.width = "300px";
   div.style.height = "300px";
   document.body.insertBefore(div, document.body.firstChild);
 
@@ -31,11 +31,24 @@ export function openCreate() {
 
   window.addEventListener("message", (msg) => {
     if (
-      msg.origin === iframeOrigin &&
-      msg.data === "GistMark_MsgCmd_closeCreate"
+      msg.origin !== iframeOrigin
     ) {
+      return;
+    }
+    const data = msg.data;
+    if (!data.type) {
+      return;
+    }
+
+    if (data.type === 'closeCreate') {
       const createIframe = document.getElementById(_IframeCreateId);
       createIframe.parentNode.removeChild(createIframe);
+      return;
+    }
+
+    if (data.type === 'confirmCreate') {
+      console.log(data);
+      return;
     }
   });
 }

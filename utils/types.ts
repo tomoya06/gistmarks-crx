@@ -11,3 +11,9 @@ export interface MarkItem {
   link: string;
   children: MarkItem[];
 }
+
+export interface ConfirmCreatePayload {
+  title: string;
+  url: string;
+  folder: string;
+}
